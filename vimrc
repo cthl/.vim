@@ -1,3 +1,16 @@
+" Enable Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Plugin 'powerline/powerline'
+call vundle#end()
+filetype plugin indent on
+
 set ai
 set number
 set ruler
@@ -5,17 +18,13 @@ set ts=2
 set shiftwidth=2
 set expandtab
 set bs=2
+set laststatus=2
 
 " Syntax highlighting
 syntax enable
 set t_Co=256
 colorscheme gruvbox
 set background=dark
-
-" Code folding
-set foldmethod=marker
-set foldmarker={,}
-set foldlevel=999
 
 " Fast buffer switch
 nnoremap <C-b> :bprevious<CR>
@@ -37,27 +46,17 @@ filetype on
 " Make the quickfix window use the full width
 au FileType qf wincmd J
 
-" Open NERDTree on start and jump back to the file buffer
-"au VimEnter * NERDTree
-"au VimEnter * wincmd p
-
-" Layout of netrw
-let g:netrw_liststyle=3
-
 " Enable mouse support
 set mouse=a
-
-" Use pathogen
-execute pathogen#infect()
 
 " taglist settings
 let Tlist_Auto_Open=0
 let Tlist_Use_Right_Window=1
 nnoremap <F4> :TlistToggle<CR>
 
-" Show buffer list on :b + TAB
-set wildchar=<Tab> wildmenu wildmode=full
-set wildcharm=<C-Z>
+" YCM settings
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt=0
 
 " Close buffers like taglist etc. automatically on :q or :x
 function! CheckLeftBuffers()
@@ -84,13 +83,11 @@ autocmd BufEnter * call CheckLeftBuffers()
 
 " Highlight cursor line and right margin
 set cursorline
-hi CursorLine cterm=NONE ctermbg=59
-hi CursorLineNr cterm=NONE ctermbg=59
-hi OverLength ctermbg=red
-match OverLength /\%81v.\+/
+hi CursorLine cterm=NONE ctermbg=236
+hi CursorLineNr cterm=NONE ctermbg=237
 if v:version > 703
   set cc=81
-  hi ColorColumn ctermbg=238
+  hi ColorColumn ctermbg=236
 endif
 
 " GVIM settings
